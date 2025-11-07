@@ -1,0 +1,43 @@
+setup :
+echo "# git-practice-merge-cherry-pick" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jivanmohite/git-practice-merge-cherry-pick.git
+git push -u origin main
+git checkout -b feature-A
+git checkout -b feature-B
+	
+part 1 :
+git checkout -b feature-A
+echo "Feature A complete" > featureA.txt
+git add .
+git commit -m "Added Feature A"
+git checkout main
+git merge feature-A
+git push origin main
+
+part 2 :
+git checkout main
+echo "Initial version" > app.txt
+git add .
+git commit -m "Initial commit with app.txt"
+git checkout -b feature-A
+echo "Feature A changes" > app.txt
+git add .
+git commit -m "Updated app.txt in feature-A"
+git checkout main
+git checkout -b feature-B
+echo "Feature B changes" > app.txt
+git add .
+git commit -m "Updated app.txt in feature-B"
+git checkout main
+git merge feature-A
+git add app.txt
+git commit -m "Resolved merge conflict"
+git merge feature-B
+git add app.txt
+git commit -m "Resolved merge conflict"
+
+part 3 :
